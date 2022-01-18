@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://global_theme.tres" type="Theme" id=1]
+[ext_resource path="res://game/Game.gd" type="Script" id=3]
+
+[node name="Game" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HUD" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="MinesLabel" type="Label" parent="HUD"]
+margin_right = 510.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Mines: 0"
+align = 1
+valign = 1
+
+[node name="FlagsLabel" type="Label" parent="HUD"]
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Flags: 0"
+align = 1
+valign = 1
+
+[node name="GameOverDialog" type="ConfirmationDialog" parent="HUD"]
+margin_left = 546.0
+margin_right = 1024.0
+margin_bottom = 130.0
+theme = ExtResource( 1 )
+popup_exclusive = true
+window_title = "Game Over"
+dialog_autowrap = true
+
+[node name="MineFieldContainer" type="CenterContainer" parent="."]
+margin_top = 44.0
+margin_right = 1024.0
+margin_bottom = 44.0
+
+[connection signal="confirmed" from="HUD/GameOverDialog" to="." method="new_game"]
